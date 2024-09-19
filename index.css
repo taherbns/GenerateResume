@@ -1,0 +1,114 @@
+/* Styles de base */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem; 
+  font-weight: 700; 
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+}
+.container {
+  margin-top: 50px;
+}
+
+
+.upload-section {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.upload-section:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #dfe6e9;
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #1c5d8d;
+  transform: translateY(1px);
+}
+
+.summary-result {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #ecf0f1;
+  border-left: 5px solid #3498db;
+  border-radius: 5px;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.summary-section {
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+footer {
+  
+  padding: 15px 0;
+  background-color: #34495e;
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;  
+  margin-top: 360px;
+
+}
+
+footer p {
+  margin: 10;
+  font-size: 0.9rem;
+
+}
