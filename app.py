@@ -53,7 +53,7 @@ def ajuster_longueur(text, proportion=0.3, max_cap=2000, min_cap=20):
     min_length = min(min_cap, max_length - 1)  # Assurer que min_length < max_length
     return max_length, min_length
 
-# Fonction pour diviser le texte en morceaux respectant la limite de tokens
+# Fonction pour diviser le texte en morceaux respectant la limite de token
 def split_text(text, max_tokens=2000):
     words = text.split()
     chunks = []
@@ -68,7 +68,8 @@ def split_text(text, max_tokens=2000):
     if current_chunk:
         chunks.append(" ".join(current_chunk))
 
-    return chunks
+    return chunks #chnuks splited from the text to maximize the extraction
+    
 
 # Fonction de génération de résumé avec BART ou T5
 def summarize_text(text, model_name='bart'):
