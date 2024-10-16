@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import PyPDF2
+import pdfplumber
 from docx import Document
 from pptx import Presentation
 from transformers import BartTokenizer, BartForConditionalGeneration, T5Tokenizer, T5ForConditionalGeneration
@@ -25,12 +25,10 @@ def select_model(model_name):
 # Fonction d'extraction de texte depuis les fichiers
 def extract_text_from_pdf(file_path):
     text = ""
-    with open(file_path, "rb") as file:
-        reader = PyPDF2.PdfReader(file)
-        for page in reader.pages:
-            text += page.extract_text()
+    with pdfplumber.open(file_path) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text() + "\n"
     return text
-
 def extract_text_from_word(file_path):
     text = ""
     doc = Document(file_path)
@@ -43,8 +41,8 @@ def extract_text_from_ppt(file_path):
     prs = Presentation(file_path)
     for slide in prs.slides:
         for shape in slide.shapes:
-            if hasattr(shape, "text"):
-                text += shape.text + "\n"
+            if hasattr(shape, "text_frame") and shape.text_frame is not None:
+                text += shape.text_frame.text + "\n"
     return text
 
 # Fonction pour ajuster la longueur maximale et minimale du résumé
@@ -119,7 +117,7 @@ def upload_file():
             return jsonify({"error": "Type de fichier non supporté"}), 400
 
         # Log pour vérifier si le texte a été extrait
-        print(f"Texte extrait : {text[:500]}...")  # Afficher les 500 premiers caractères du texte extrait
+        print(f"Texte extrait : {text[:500000]}...")  # Afficher les 500 premiers caractères du texte extrait
         
         # Vérifier si le texte extrait est trop court pour être résumé
         if len(text.strip()) == 0:
